@@ -1,4 +1,5 @@
 import React from "react";
+import {Loading} from "./Loading";
 
 class ClassState extends React.Component {
   
@@ -6,6 +7,26 @@ class ClassState extends React.Component {
         super(props);
         this.state = {
             error: false,
+            loading: false,
+        }
+    }
+
+    // UNSAFE_componentWillMount(){
+    //     console.log("componentWillMount");
+    // }
+
+    // componentDidMount(){
+    //     console.log("componentDidMount");
+    // }
+
+    componentDidUpdate(){
+        console.log("Actualizacion");
+        if(this.state.loading){
+            console.log("Haciendo actualizacion en class component");
+            setTimeout(()=>{
+                this.setState({loading:false});
+            }, 3000);
+            console.log("Terminando actualizacion en class component");
         }
     }
 
@@ -20,8 +41,12 @@ class ClassState extends React.Component {
                       <p>Error: El código es incorrecto</p>
                 )}
 
+                {this.state.loading && (
+                    <Loading />
+                )}
+
                 <button
-                onClick={() => this.setState({error: !this.state.error})}>Comprobar</button>
+                onClick={() => this.setState({loading: true})}>Comprobar</button>
             </div>
         );
     }
