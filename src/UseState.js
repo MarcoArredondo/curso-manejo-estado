@@ -30,7 +30,7 @@ function UseState({name}){
             <h2>Eliminar {name}</h2>
             <p>Por favor, escribe el código de seguridad</p>
 
-            {error && (
+            {(error && !loading) && (
                 <p>Error: El código es incorrecto</p>
             )}
 
